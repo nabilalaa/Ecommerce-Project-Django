@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <!-- start products -->
+        <section class="products pd-section" id="products">
+            <h2 class="title-section">products</h2>
+            <div class="container">
+                <div class="grid-products">
+                    {% for product in products %}
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="{{ product.image.url }}" alt="" />
+                            </div>
+                            <div class="info">
+                                <h3>{{ product.name }}</h3>
+                                <p>
+                                    {{ product.description }}
+                                </p>
+                                <a href="{% url "details" detail_id=product.id %}" class="btn">details</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+{% endblock %}

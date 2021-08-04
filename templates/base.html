@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static "css/all.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/normalize.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/responsive.css" %}"/>
+    <title>Document</title>
+</head>
+<body>
+<!-- start nav -->
+<nav>
+    <div class="container">
+        <div class="flex">
+            <a class="logo" href="{% url "home" %}"><img src="{% static "images/logo.png" %}" alt="logo"/></a>
+            <ul class="links">
+                <li><a href="{% url "home" %}">home</a></li>
+                <li><a href="{% url "about" %}">about</a></li>
+                <li><a href="{% url "products" %}">products</a></li>
+                <li><a href="{% url "reviews" %}">reviews</a></li>
+                <li><a href="{% url "contact" %}">contact</a></li>
+                <li class="accounts">
+                    <a>accounts</a>
+                    <i class="fas fa-caret-down"></i>
+                    <ul class="accounts-menu">
+                        {% if login %}
+                            {% for user in login %}
+                                <li><a href="">{{ user.name }}</a></li>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <li><a href="{% url "home" %}">
+                                        <button class="sign-out">sign out</button>
+                                    </a></li>
+                                </form>
+                            {% endfor %}
+                        {% else %}
+                            <li><a href="{% url "login" %}">login</a></li>
+                            <li><a href="{% url "register" %}">sign in</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li class="cart">
+                    {% if login %}
+                        <a href="{% url "check_out" %}"><i class="fas fa-cart-plus"></i></a>
+                    {% endif %}
+                </li>
+            </ul>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </div>
+    <div class="menu">
+        <ul class="link-side-menu">
+            <li><a href="{% url "home" %}">home</a></li>
+            <li><a href="{% url "about" %}">about</a></li>
+            <li><a href="{% url "products" %}">products</a></li>
+            <li><a href="{% url "reviews" %}">reviews</a></li>
+            <li><a href="{% url "contact" %}">contact</a></li>
+            <li class="accounts">
+                <a id="btn-accounts-side">accounts</a>
+                <i class="fas fa-caret-down"></i>
+                <ul class="accounts-side-menu">
+                    {% if login %}
+                        {% for user in login %}
+                            <li><a href="">{{ user.name }}</a></li>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <li><a href="{% url "home" %}">
+                                    <button class="sign-out">sign out</button>
+                                </a></li>
+                            </form>
+                        {% endfor %}
+                    {% else %}
+                        <li><a href="{% url "login" %}">login</a></li>
+                        <li><a href="{% url "register" %}">sign in</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+            <li class="cart">
+                <a href="check-out.html"><i class="fas fa-cart-plus"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+<!-- start footer -->
+<footer>
+    <div class="container">
+        <ul class="link-footer flex-link-footer">
+            <li><a href="{% url "home" %}">home</a></li>
+            <li><a href="{% url "about" %}">about</a></li>
+            <li><a href="{% url "products" %}">products</a></li>
+            <li><a href="{% url "reviews" %}">reviews</a></li>
+            <li><a href="{% url "contact" %}">contact</a></li>
+        </ul>
+    </div>
+    <div class="line"></div>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis porro, odio
+        doloremque quasi quaerat ea adipisci deserunt reprehenderit est, ratione tempore
+        aliquam iusto. Iusto, maxime quisquam ullam aliquid esse perferendis laudantium, aut
+        velit perspiciatis voluptatem hic officia iste inventore officiis quo recusandae,
+        nemo cum eos? Magni sed amet natus doloribus?
+    </p>
+    <ul class="social flex">
+        <li>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </li>
+        <li>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </li>
+        <li>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </li>
+        <li>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+        </li>
+    </ul>
+    <p>&copy; Created by Nabil Alaa All rights Reserved</p>
+</footer>
+<div class="scroll"><i class="fas fa-chevron-up"></i></div>
+<script src="{% static "js/quantity.js" %}"></script>
+<script src="{% static "js/main.js" %}"></script>
+</body>
+</html>

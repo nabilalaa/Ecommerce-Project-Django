@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- start header -->
+    <header>
+        <div class="overlay">
+            <main>
+                <h1>
+                    welcome to
+                    <div class="logo-main">
+                        <img src="{% static "images/logo.png" %}" alt="logo" />
+                    </div>
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit Quibusdam
+                    exercitationem
+                </p>
+                <a href="" class="btn btn-main">order now</a>
+            </main>
+        </div>
+    </header>
+    <!-- start about section -->
+        <section class="about pd-section" id="about">
+            <div class="container">
+                <div class="header">
+                    <h2>Our Story</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda,
+                        veritatis?
+                    </p>
+                </div>
+                <div class="items">
+                    <div class="flex-about">
+                        <div class="description">
+                            <h2>Lorem, ipsum dolor.</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+                                sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt suscipit
+                                vel!sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt
+                                suscipit vel!
+                            </p>
+                            <a href="#" class="btn btn-about">more</a>
+                        </div>
+                        <div class="about-img">
+                            <img src="{% static "images/about1.jpg" %}" alt="football" />
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="flex-about">
+                        <div class="about-img">
+                            <img src="{% static "images/about2.jpg" %}" alt="football" />
+                        </div>
+                        <div class="description">
+                            <h2>Lorem, ipsum dolor.</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+                                sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt suscipit
+                                vel!sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt
+                                suscipit vel!
+                            </p>
+                            <a href="#" class="btn btn-about">more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- start products -->
+        <section class="products pd-section" id="products">
+            <h2 class="title-section">latest products</h2>
+            <div class="container">
+                <div class="grid-products">
+                    {% for product in products|slice:"0:8" %}
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="{{ product.image.url }}" alt="" />
+                            </div>
+                            <div class="info">
+                                <h3>{{ product.name }}</h3>
+                                <p>
+                                    {{ product.description }}
+                                </p>
+                                <a href="{% url "details" detail_id=product.id %}" class="btn">details</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- start reviews -->
+        <section class="reviews pd-section" id="reviews">
+            <div class="container">
+                <h2 class="title-section">reviews</h2>
+                <div class="grid-reviews">
+                    <div class="review">
+                        <div class="flex-review">
+                            <div class="img-review"><img src="{% static "images/review1.jpg" %}" alt="" /></div>
+                            <div class="col"></div>
+                            <div class="circle">
+                                <div class="percent1 review1-percent"></div>
+                                <div class="review2-percent"></div>
+                                <div class="num">50%</div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quam
+                            perspiciatis culpa distinctio iste debitis deserunt sunt nemo eveniet
+                            neque. Aliquam illo magnam tenetur
+                        </p>
+                    </div>
+                    <div class="review">
+                        <div class="flex-review">
+                            <div class="img-review"><img src="{% static "images/review2.jpg" %}" alt="" /></div>
+                            <div class="col"></div>
+                            <div class="circle">
+                                <div class="percent2 review1-percent"></div>
+                                <div class="review2-percent"></div>
+                                <div class="num">65%</div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quam
+                            perspiciatis culpa distinctio iste debitis deserunt sunt nemo eveniet
+                            neque. Aliquam illo magnam tenetur
+                        </p>
+                    </div>
+                    <div class="review">
+                        <div class="flex-review">
+                            <div class="img-review"><img src="{% static "images/review3.jpg" %}" alt="" /></div>
+                            <div class="col"></div>
+                            <div class="circle">
+                                <div class="percent3 review1-percent"></div>
+                                <div class="review2-percent"></div>
+                                <div class="num">75%</div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quam
+                            perspiciatis culpa distinctio iste debitis deserunt sunt nemo eveniet
+                            neque. Aliquam illo magnam tenetur
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+
+

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- start contact -->
+    <section class="contact pd-section">
+        <div class="container">
+            <h2>contact us</h2>
+            <p>Please fill this form in a decent manner</p>
+            <form class="contact-form" method="post">
+                {% csrf_token %}
+                <div class="flex-contact">
+                    <div class="inner">
+                        <label for="name">full name</label>
+                        <input type="text" id="name" name="name" />
+                    </div>
+                    <div class="inner">
+                        <label for="e-mail">e-mail</label>
+                        <input type="text" id="e-mail" name="e-mail" />
+                    </div>
+                    <div class="inner">
+                        <label for="number">number</label>
+                        <input type="text" id="number" name="number" />
+                    </div>
+                </div>
+                <div class="inner-textarea">
+                    <label for="message">message</label>
+                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                </div>
+                <button class="btn btn-custom">check out</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- start check-out -->
+    <section class="check-out pd-section">
+        <div class="container">
+            <div class="check-grid">
+                <div class="check-header">product</div>
+                <div class="check-header">image</div>
+                <div class="check-header">amount</div>
+                <div class="check-header">price</div>
+            </div>
+            {% if check_out %}
+                {% for product in check_out %}
+                    <div class="check-body check-grid">
+                        <div class="check-items">
+                            <h4>{{ product.name }}</h4>
+                        </div>
+                        <div class="check-items">
+                            <div class="check-img">
+                                <img src="{{ product.image }}"/>
+                            </div>
+                        </div>
+                        <div class="check-items">{{ product.amount }}</div>
+                        <div class="check-items">&dollar; {{ product.price }}</div>
+                        <form method="GET">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ product.price }}" name="price">
+                            <button class="remove"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="total">
+{#                <h4>delivery: &dollar; </h4>#}
+                {% if total %}
+                    <h4>total: &dollar; {{ total.t }}</h4>
+                {% else %}
+                    <h3>not found</h3>
+                    <a href="{% url "products" %}">go shopping here</a>
+                {% endif %}
+
+            </div>
+            <a href="#" class="btn btn-check-out">check out</a>
+        </div>
+    </section>
+{% endblock %}

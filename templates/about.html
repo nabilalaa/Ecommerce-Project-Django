@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- start about section -->
+    <section class="about pd-section" id="about">
+        <div class="container">
+            <div class="header">
+                <h2>Our Story</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda,
+                    veritatis?
+                </p>
+            </div>
+            <div class="items">
+                <div class="flex-about">
+                    <div class="description">
+                        <h2>Lorem, ipsum dolor.</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+                            sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt suscipit
+                            vel!sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt
+                            suscipit vel!
+                        </p>
+                        <a href="#" class="btn btn-about">more</a>
+                    </div>
+                    <div class="about-img">
+                        <img src="{% static "images/about1.jpg" %}" alt="football" />
+                    </div>
+                </div>
+            </div>
+            <div class="items">
+                <div class="flex-about">
+                    <div class="about-img">
+                        <img src="{% static "images/about2.jpg" %}" alt="football" />
+                    </div>
+                    <div class="description">
+                        <h2>Lorem, ipsum dolor.</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+                            sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt suscipit
+                            vel!sequi, nobis ratione vitae nesciunt nisi quas aliquid sunt
+                            suscipit vel!
+                        </p>
+                        <a href="#" class="btn btn-about">more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
