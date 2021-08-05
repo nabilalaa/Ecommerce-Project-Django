@@ -7,7 +7,8 @@ import math
 def index(request):
     context = {
         "products": Product.objects.all(),
-        "login": Login.objects.all()
+        "login": Login.objects.all(),
+        "title": "home"
     }
     if request.POST:
         Login.objects.all().delete()
@@ -19,7 +20,9 @@ def index(request):
 def about(request):
     context = {
         "products": Product.objects.all(),
-        "login": Login.objects.all()
+        "login": Login.objects.all(),
+        "title": "about"
+
     }
     if request.POST:
         Login.objects.all().delete()
@@ -32,7 +35,8 @@ def about(request):
 def products(request):
     context = {
         "products": Product.objects.all(),
-        "login": Login.objects.all()
+        "login": Login.objects.all(),
+        "title":"products"
     }
 
     if request.POST:
@@ -46,7 +50,9 @@ def products(request):
 def reviews(request):
     context = {
         "products": Product.objects.all(),
-        "login": Login.objects.all()
+        "login": Login.objects.all(),
+        "title": "reviews"
+
     }
     if request.POST:
         Login.objects.all().delete()
@@ -60,7 +66,9 @@ def reviews(request):
 def contact(request):
     context = {
         "products": Product.objects.all(),
-        "login": Login.objects.all()
+        "login": Login.objects.all(),
+        "title": "contact"
+
     }
     if request.POST:
         Login.objects.all().delete()
@@ -107,6 +115,8 @@ def details(request, detail_id):
     context = {
         "products": Product.objects.filter(id=detail_id),
         "login": Login.objects.all(),
+        "title": "details"
+
     }
     if request.POST:
         Login.objects.all().delete()
@@ -144,6 +154,8 @@ def check_out(request):
         "check_out": CheckOut.objects.all(),
         "login": Login.objects.all(),
         "total": Total.objects.first(),
+        "title": "check_out"
+
     }
 
     return render(request, "check-out.html", context)
@@ -161,7 +173,7 @@ def login(request):
             messages.error(request, "The username is wrong or the password is incorrect")
 
     print(username, password)
-    return render(request, "login.html")
+    return render(request, "login.html",context={"title": "login"})
 
 
 def register(request):
@@ -191,4 +203,4 @@ def register(request):
         else:
             messages.error(request, "something wrong in form")
 
-    return render(request, "register.html")
+    return render(request, "register.html",context={"title": "register"})
