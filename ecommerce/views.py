@@ -157,7 +157,6 @@ def check_out(request):
         "title": "check_out"
 
     }
-
     return render(request, "check-out.html", context)
 
 
