@@ -6,7 +6,6 @@ class Product(models.Model):
     description = models.TextField(max_length=50,null=True)
     image = models.ImageField()
     price = models.FloatField(null=True)
-    quantity = models.IntegerField(null=True,blank=True)
 
     def __str__(self):
         return self.name

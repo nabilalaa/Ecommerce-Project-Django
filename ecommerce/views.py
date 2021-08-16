@@ -13,6 +13,8 @@ def index(request):
     if request.POST:
         Login.objects.all().delete()
         CheckOut.objects.all().delete()
+        Total.objects.all().delete()
+
         return redirect("home")
     return render(request, "index.html", context)
 
@@ -27,6 +29,8 @@ def about(request):
     if request.POST:
         Login.objects.all().delete()
         CheckOut.objects.all().delete()
+        Total.objects.all().delete()
+
         return redirect("home")
 
     return render(request, "about.html", context)
@@ -42,6 +46,8 @@ def products(request):
     if request.POST:
         Login.objects.all().delete()
         CheckOut.objects.all().delete()
+        Total.objects.all().delete()
+
         return redirect("home")
 
     return render(request, "products.html", context)
@@ -73,6 +79,7 @@ def contact(request):
     if request.POST:
         Login.objects.all().delete()
         CheckOut.objects.all().delete()
+        Total.objects.all().delete()
 
         return redirect("home")
 
@@ -148,6 +155,7 @@ def check_out(request):
     if request.POST:
         Login.objects.all().delete()
         CheckOut.objects.all().delete()
+        Total.objects.all().delete()
 
         return redirect("home")
     context = {
