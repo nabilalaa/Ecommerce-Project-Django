@@ -76,26 +76,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
 
-    # 'default': {
-    #
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #
-    #     'NAME': 'ecommerce',
-    #
-    #     'USER': 'postgres',
-    #
-    #     'PASSWORD': 'Nn123123',
-    #
-    #     'HOST': 'localhost',
-    #
-    #     'PORT': '5432',
-    #
-    #    }
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'd68pe5pvo7c35c',
+
+        'USER': 'lqpawzzszguade',
+
+        'PASSWORD': 'ba9ac2500cfc9d4115f344aa420ae4fb488dfb2bd819ed696727d6020ba6a147',
+
+        'HOST': 'ec2-34-231-183-74.compute-1.amazonaws.com',
+
+        'PORT': '5432',
+
+    }
 }
 
 # Password validation
