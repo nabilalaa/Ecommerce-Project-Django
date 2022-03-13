@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'rtd4c33bt*af70vb0w1k(^=zv^t4@9nl0xt166!==a9vn9bi=$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ecommerce-football-shop.herokuapp.com", "127.0.0.1"]
 
 # Application definition
 
