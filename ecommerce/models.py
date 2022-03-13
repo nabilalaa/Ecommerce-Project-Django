@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Product(models.Model):
@@ -13,11 +14,8 @@ class Product(models.Model):
 
 class Register(models.Model):
     fullname = models.CharField(max_length=20,null=True)
-    username = models.CharField(max_length=50,null=True)
+    username = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     number = models.CharField(max_length=50,null=True)
-    email = models.EmailField(max_length=50,null=True)
-    password = models.TextField(max_length=50,null=True)
-    rePassword = models.TextField(max_length=50,null=True)
     city = models.CharField(max_length=50,null=True)
     address = models.TextField(max_length=50,null=True)
 
@@ -25,12 +23,12 @@ class Register(models.Model):
         return self.fullname
 
 
-class Login(models.Model):
-    name = models.CharField(max_length=20,null=True)
-    password = models.TextField(max_length=50,null=True)
-
-    def __str__(self):
-        return self.name
+# class Login(models.Model):
+#     name = models.CharField(max_length=20,null=True)
+#     password = models.TextField(max_length=50,null=True)
+#
+#     def __str__(self):
+#         return self.name
 
 class CheckOut(models.Model):
     name = models.CharField(max_length=50,null=True)

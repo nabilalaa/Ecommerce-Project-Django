@@ -2,88 +2,32 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
 import math
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 
 
 def index(request):
-    context = {
-        "products": Product.objects.all(),
-        "login": Login.objects.all(),
-        "title": "home"
-    }
-    if request.POST:
-        Login.objects.all().delete()
-        CheckOut.objects.all().delete()
-        Total.objects.all().delete()
-
-        return redirect("home")
-    return render(request, "index.html", context)
+    return render(request, "index.html")
 
 
 def about(request):
-    context = {
-        "products": Product.objects.all(),
-        "login": Login.objects.all(),
-        "title": "about"
-
-    }
-    if request.POST:
-        Login.objects.all().delete()
-        CheckOut.objects.all().delete()
-        Total.objects.all().delete()
-
-        return redirect("home")
-
-    return render(request, "about.html", context)
+    return render(request, "about.html")
 
 
 def products(request):
     context = {
         "products": Product.objects.all(),
-        "login": Login.objects.all(),
-        "title":"products"
     }
-
-    if request.POST:
-        Login.objects.all().delete()
-        CheckOut.objects.all().delete()
-        Total.objects.all().delete()
-
-        return redirect("home")
 
     return render(request, "products.html", context)
 
 
 def reviews(request):
-    context = {
-        "products": Product.objects.all(),
-        "login": Login.objects.all(),
-        "title": "reviews"
-
-    }
-    if request.POST:
-        Login.objects.all().delete()
-        CheckOut.objects.all().delete()
-
-        return redirect("home")
-
-    return render(request, "reviews.html", context)
+    return render(request, "reviews.html")
 
 
 def contact(request):
-    context = {
-        "products": Product.objects.all(),
-        "login": Login.objects.all(),
-        "title": "contact"
-
-    }
-    if request.POST:
-        Login.objects.all().delete()
-        CheckOut.objects.all().delete()
-        Total.objects.all().delete()
-
-        return redirect("home")
-
-    return render(request, "contact.html", context)
+    return render(request, "contact.html")
 
 
 def details(request, detail_id):
@@ -93,7 +37,7 @@ def details(request, detail_id):
     image = request.GET.get("image")
 
     if request.GET and name and price and amount and image:
-        if not Login.objects.all():
+        if not User.is_authenticated:
             return redirect("login")
         else:
             CheckOut.objects.create(
@@ -121,14 +65,7 @@ def details(request, detail_id):
 
     context = {
         "products": Product.objects.filter(id=detail_id),
-        "login": Login.objects.all(),
-        "title": "details"
-
     }
-    if request.POST:
-        Login.objects.all().delete()
-        CheckOut.objects.all().delete()
-        return redirect("home")
     return render(request, "details.html", context)
 
 
@@ -149,38 +86,28 @@ def check_out(request):
         CheckOut.objects.filter(price=request.GET.get("price")).delete()
         Total.objects.filter(total=request.GET.get("price")).delete()
         Total.objects.update(
-            t=t-float(request.GET.get("price"))
+            t=t - float(request.GET.get("price"))
         )
-
-    if request.POST:
-        Login.objects.all().delete()
-        CheckOut.objects.all().delete()
-        Total.objects.all().delete()
-
-        return redirect("home")
     context = {
         "check_out": CheckOut.objects.all(),
-        "login": Login.objects.all(),
         "total": Total.objects.first(),
-        "title": "check_out"
-
     }
     return render(request, "check-out.html", context)
 
 
-def login(request):
+def log_in(request):
     username = request.POST.get("username")
     password = request.POST.get("pass")
-    if request.POST:
-        if Register.objects.filter(username=username, password=password):
-            Login.objects.create(name=username, password=password)
+    user = authenticate(username=username, password=password)
+    print(user, "ssss")
+    if request.method == "POST":
+        if user:
+            login(request, user)
             return redirect("home")
-
         else:
             messages.error(request, "The username is wrong or the password is incorrect")
 
-    print(username, password)
-    return render(request, "login.html",context={"title": "login"})
+    return render(request, "login.html")
 
 
 def register(request):
@@ -192,22 +119,29 @@ def register(request):
     re_password = request.POST.get("re-password")
     city = request.POST.get("city")
     address = request.POST.get("address")
-
     if request.POST:
-        if fullname and username and number and email and password == re_password and city and address:
-            Register.objects.create(
-                fullname=fullname,
+        if User.objects.filter(username=username):
+            messages.error(request, "username has taken")
+        # and len(
+        #     password) <= 8
+        elif fullname and username and number and email and password == re_password and city and address:
+            User.objects.create_user(
                 username=username,
-                number=number,
                 email=email,
                 password=password,
-                rePassword=re_password,
-                city=city,
-                address=address
             )
+            Register.objects.create(fullname=fullname, city=city, address=address,
+                                    username=authenticate(username=username, password=password))
             messages.success(request, "done, register successfully")
-
+            return redirect("login")
         else:
             messages.error(request, "something wrong in form")
 
-    return render(request, "register.html",context={"title": "register"})
+    return render(request, "register.html")
+
+
+def log_out(request):
+    logout(request)
+    CheckOut.objects.all().delete()
+    Total.objects.all().delete()
+    return redirect("home")

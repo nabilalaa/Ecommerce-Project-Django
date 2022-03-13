@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}"/>
     <link rel="stylesheet" href="{% static "css/responsive.css" %}"/>
     {% if title %}
-        <title>{{ title|title }}</title>
+        <title>{% block title %}{% endblock %}</title>
     {% endif %}
 </head>
 <body>
@@ -33,16 +33,9 @@
                     <a>accounts</a>
                     <i class="fas fa-caret-down"></i>
                     <ul class="accounts-menu">
-                        {% if login %}
-                            {% for user in login %}
-                                <li><a href="">{{ user.name }}</a></li>
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <li><a href="{% url "home" %}">
-                                        <button class="sign-out">sign out</button>
-                                    </a></li>
-                                </form>
-                            {% endfor %}
+                        {% if user.is_authenticated %}
+                            <li><a href="">{{ user.username }}</a></li>
+                            <li><a href="{% url "logout" %}">logout </a></li>
                         {% else %}
                             <li><a href="{% url "login" %}">login</a></li>
                             <li><a href="{% url "register" %}">sign in</a></li>
@@ -50,7 +43,7 @@
                     </ul>
                 </li>
                 <li class="cart">
-                    {% if login %}
+                    {% if user.is_authenticated %}
                         <a href="{% url "check_out" %}"><i class="fas fa-cart-plus"></i></a>
                     {% endif %}
                 </li>
@@ -69,16 +62,9 @@
                 <a id="btn-accounts-side">accounts</a>
                 <i class="fas fa-caret-down"></i>
                 <ul class="accounts-side-menu">
-                    {% if login %}
-                        {% for user in login %}
-                            <li><a href="">{{ user.name }}</a></li>
-                            <form method="POST">
-                                {% csrf_token %}
-                                <li><a href="{% url "home" %}">
-                                    <button class="sign-out">sign out</button>
-                                </a></li>
-                            </form>
-                        {% endfor %}
+                    {% if user.is_authenticated %}
+                        <li><a href="">{{ user.username }}</a></li>
+                        <li><a href="{% url "logout" %}">logout </a></li>
                     {% else %}
                         <li><a href="{% url "login" %}">login</a></li>
                         <li><a href="{% url "register" %}">sign in</a></li>

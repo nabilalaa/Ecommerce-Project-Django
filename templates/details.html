@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}
+details
+{% endblock %}
 {% block content %}
     <!-- start details -->
     <section class="details-pro pd-section">
@@ -14,7 +17,7 @@
                             <h3>{{ product.name }}</h3>
                             <p>{{ product.description }}</p>
                             <h4>$ {{ product.price }}</h4>
-                            {#                    action="{% url "check_out" check_id=product.id %}#}
+{#                                                action="{% url "check_out" check_id=product.id %}#}
                             <form method="GET">
                                 {% csrf_token %}
                                 <div class="quantity-flex">

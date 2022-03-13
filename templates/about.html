@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}
+    about
+{% endblock %}
 {% block content %}
     <!-- start about section -->
     <section class="about pd-section" id="about">
@@ -24,14 +27,14 @@
                         <a href="#" class="btn btn-about">more</a>
                     </div>
                     <div class="about-img">
-                        <img src="{% static "images/about1.jpg" %}" alt="football" />
+                        <img src="{% static "images/about1.jpg" %}" alt="football"/>
                     </div>
                 </div>
             </div>
             <div class="items">
                 <div class="flex-about">
                     <div class="about-img">
-                        <img src="{% static "images/about2.jpg" %}" alt="football" />
+                        <img src="{% static "images/about2.jpg" %}" alt="football"/>
                     </div>
                     <div class="description">
                         <h2>Lorem, ipsum dolor.</h2>
