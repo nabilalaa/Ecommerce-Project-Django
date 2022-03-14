@@ -7,7 +7,10 @@ from django.contrib.auth import login, logout, authenticate
 
 
 def index(request):
-    return render(request, "index.html")
+    context = {
+        "products": Product.objects.all(),
+    }
+    return render(request, "index.html",context)
 
 
 def about(request):
