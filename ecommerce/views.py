@@ -4,42 +4,63 @@ from .models import *
 import math
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.template import RequestContext
+
+# c = RequestContext(request, {
+#     'foo': 'bar',
+# })
 
 
 def index(request):
     context = {
         "products": Product.objects.all(),
+        "check_out": CheckOut.objects.all(),
+
     }
     return render(request, "index.html",context)
 
 
 def about(request):
-    return render(request, "about.html")
+    context = {
+        "check_out": CheckOut.objects.all(),
+
+    }
+    return render(request, "about.html",context)
 
 
 def products(request):
     context = {
         "products": Product.objects.all(),
+        "check_out": CheckOut.objects.all(),
+
     }
 
     return render(request, "products.html", context)
 
 
 def reviews(request):
-    return render(request, "reviews.html")
+    context = {
+        "check_out": CheckOut.objects.all(),
+
+    }
+    return render(request, "reviews.html",context)
 
 
 def contact(request):
-    return render(request, "contact.html")
+    context = {
+        "check_out": CheckOut.objects.all(),
+
+    }
+    return render(request, "contact.html",context)
 
 
 def details(request, detail_id):
-    name = request.GET.get("name")
-    amount = request.GET.get("quantity")
-    price = request.GET.get("price")
-    image = request.GET.get("image")
+    name = request.POST.get("name")
+    amount = request.POST.get("quantity")
+    price = request.POST.get("price")
+    image = request.POST.get("image")
 
-    if request.GET and name and price and amount and image:
+    if request.POST and name and price and amount and image:
         if not User.is_authenticated:
             return redirect("login")
         else:
@@ -64,10 +85,12 @@ def details(request, detail_id):
             Total.objects.update(
                 t=t
             )
-            return redirect("check_out")
+            # return redirect("check_out")
 
     context = {
         "products": Product.objects.filter(id=detail_id),
+        "check_out": CheckOut.objects.all(),
+
     }
     return render(request, "details.html", context)
 
@@ -85,11 +108,11 @@ def check_out(request):
     Total.objects.update(
         t=t
     )
-    if request.GET and request.GET.get("price"):
-        CheckOut.objects.filter(price=request.GET.get("price")).delete()
-        Total.objects.filter(total=request.GET.get("price")).delete()
+    if request.POST and request.POST.get("price"):
+        CheckOut.objects.filter(price=request.POST.get("price")).delete()
+        Total.objects.filter(total=request.POST.get("price")).delete()
         Total.objects.update(
-            t=t - float(request.GET.get("price"))
+            t=t - float(request.POST.get("price"))
         )
     context = {
         "check_out": CheckOut.objects.all(),

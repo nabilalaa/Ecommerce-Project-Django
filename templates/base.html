@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="{% static "css/normalize.css" %}"/>
     <link rel="stylesheet" href="{% static "css/style.css" %}"/>
     <link rel="stylesheet" href="{% static "css/responsive.css" %}"/>
-    {% if title %}
-        <title>{% block title %}{% endblock %}</title>
-    {% endif %}
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 <!-- start nav -->
@@ -44,7 +42,11 @@
                 </li>
                 <li class="cart">
                     {% if user.is_authenticated %}
-                        <a href="{% url "check_out" %}"><i class="fas fa-cart-plus"></i></a>
+                        <a href="{% url "check_out" %}"><i class="fas fa-cart-plus"></i>
+{#                        {% for productnum in  %}#}
+                            {{ check_out|length }}
+{#                        {% endfor %}#}
+                        </a>
                     {% endif %}
                 </li>
             </ul>

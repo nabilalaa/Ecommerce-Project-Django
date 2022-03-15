@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-check-out
-{% endblock %}
+    check-out
+{% endblock title %}
 {% block content %}
     <!-- start check-out -->
     <section class="check-out pd-section">
@@ -26,7 +26,7 @@ check-out
                         </div>
                         <div class="check-items">{{ product.amount }}</div>
                         <div class="check-items">&dollar; {{ product.price }}</div>
-                        <form method="GET">
+                        <form method="POST">
                             {% csrf_token %}
                             <input type="hidden" value="{{ product.price }}" name="price">
                             <button class="remove"><i class="fas fa-trash-alt"></i></button>
