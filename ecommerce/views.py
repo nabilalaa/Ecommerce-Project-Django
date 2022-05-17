@@ -6,10 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.template import RequestContext
 
-# c = RequestContext(request, {
-#     'foo': 'bar',
-# })
-
 
 def index(request):
     context = {
@@ -61,7 +57,8 @@ def details(request, detail_id):
     image = request.POST.get("image")
 
     if request.POST and name and price and amount and image:
-        if not User.is_authenticated:
+        print(request.user.is_authenticated)
+        if not request.user.is_authenticated:
             return redirect("login")
         else:
             CheckOut.objects.create(
