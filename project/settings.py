@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'rtd4c33bt*af70vb0w1k(^=zv^t4@9nl0xt166!==a9vn9bi=$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["ecommerce-football-shop.herokuapp.com", "127.0.0.1"]
 
@@ -133,13 +133,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "ecommerce/static")
+    BASE_DIR / "static",
 ]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 
 MEDIA_URL = '/media/'

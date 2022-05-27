@@ -51,8 +51,6 @@ var btnAccountsSide = document.querySelector("#btn-accounts-side");
 var accountsMenu = document.querySelector(".accounts-menu");
 var accountsSideMenu = document.querySelector(".accounts-side-menu");
 
-console.log(btnAccounts);
-
 btnAccounts.onclick = function () {
     if (accountsMenu.style.display == "block") {
         accountsMenu.style.display = "none";
