@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import cloudinary, cloudinary_storage
-import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +25,8 @@ SECRET_KEY = 'rtd4c33bt*af70vb0w1k(^=zv^t4@9nl0xt166!==a9vn9bi=$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ecommerce-football-shop.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "full-stack-ecommerce-django.onrender.com", "127.0.0.1"]
 
 # Application definition
 
@@ -78,25 +78,31 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+
+#     'default': {
+
+#         'ENGINE': 'django.db.backends.sq',
+
+#         'NAME': 'd68pe5pvo7c35c',
+
+#         'USER': 'lqpawzzszguade',
+
+#         'PASSWORD': 'ba9ac2500cfc9d4115f344aa420ae4fb488dfb2bd819ed696727d6020ba6a147',
+
+#         'HOST': 'ec2-34-231-183-74.compute-1.amazonaws.com',
+
+#         'PORT': '5432',
+
+#     }
+# }
+
 DATABASES = {
-
     'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': 'd68pe5pvo7c35c',
-
-        'USER': 'lqpawzzszguade',
-
-        'PASSWORD': 'ba9ac2500cfc9d4115f344aa420ae4fb488dfb2bd819ed696727d6020ba6a147',
-
-        'HOST': 'ec2-34-231-183-74.compute-1.amazonaws.com',
-
-        'PORT': '5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
