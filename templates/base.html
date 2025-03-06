@@ -1,4 +1,6 @@
 {% load static %}
+{% load static tailwind_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,48 +11,50 @@
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static "css/all.min.css" %}"/>
-    <link rel="stylesheet" href="{% static "css/normalize.css" %}"/>
-    <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-    <link rel="stylesheet" href="{% static "css/responsive.css" %}"/>
-    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}"/>
+    {% tailwind_css %}
+
+
+    <title>{% block title %}   {% endblock title %}</title>
 </head>
 <body>
 <!-- start nav -->
 <nav>
     <div class="container">
-        <div class="flex">
-            <a class="logo" href="{% url "home" %}"><img src="{% static "images/logo.png" %}" alt="logo"/></a>
-            <ul class="links">
-                <li><a href="{% url "home" %}">home</a></li>
-                <li><a href="{% url "about" %}">about</a></li>
-                <li><a href="{% url "products" %}">products</a></li>
-                <li><a href="{% url "reviews" %}">reviews</a></li>
-                <li><a href="{% url "contact" %}">contact</a></li>
+        <div class="flex justify-between items-center ">
+            <a class="logo" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="logo"/></a>
+            <ul class="links max-lg:hidden">
+                <li><a href="{% url 'home' %}">home</a></li>
+                <li><a href="{% url 'about' %}">about</a></li>
+                <li><a href="{% url 'products' %}">products</a></li>
+                <li><a href="{% url 'reviews' %}">reviews</a></li>
+                <li><a href="{% url 'contact' %}">contact</a></li>
                 <li class="accounts">
                     <a>accounts</a>
                     <i class="fas fa-caret-down"></i>
                     <ul class="accounts-menu">
                         {% if user.is_authenticated %}
                             <li><a href="">{{ user.username }}</a></li>
-                            <li><a href="{% url "logout" %}">logout </a></li>
+                            <li><a href="{% url 'logout' %}">logout </a></li>
                         {% else %}
-                            <li><a href="{% url "login" %}">login</a></li>
-                            <li><a href="{% url "register" %}">sign in</a></li>
+                            <li><a href="{% url 'login' %}">login</a></li>
+                            <li><a href="{% url 'register' %}">sign in</a></li>
                         {% endif %}
                     </ul>
                 </li>
                 <li class="cart">
                     {% if user.is_authenticated %}
-                        <a href="{% url "check_out" %}"><i class="fas fa-cart-plus"></i>
-{#                        {% for productnum in  %}#}
-                            {{ check_out|length }}
-{#                        {% endfor %}#}
+                        <a href="{% url 'view_cart' %}"><i class="fas fa-cart-plus"></i>
+                            {{ cart|length }}
                         </a>
                     {% endif %}
                 </li>
             </ul>
-            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+            <div class="menu-btn max-lg:block "><i class="fas fa-bars"></i></div>
         </div>
     </div>
     <div class="menu">
@@ -66,10 +70,10 @@
                 <ul class="accounts-side-menu">
                     {% if user.is_authenticated %}
                         <li><a href="">{{ user.username }}</a></li>
-                        <li><a href="{% url "logout" %}">logout </a></li>
+                        <li><a href="{% url 'logout' %}">logout </a></li>
                     {% else %}
-                        <li><a href="{% url "login" %}">login</a></li>
-                        <li><a href="{% url "register" %}">sign in</a></li>
+                        <li><a href="{% url 'login' %}">login</a></li>
+                        <li><a href="{% url 'register' %}">sign in</a></li>
                     {% endif %}
                 </ul>
             </li>
@@ -82,16 +86,16 @@
 
 {% block content %}
 
-{% endblock %}
+{% endblock content %}
 <!-- start footer -->
 <footer>
     <div class="container">
         <ul class="link-footer flex-link-footer">
-            <li><a href="{% url "home" %}">home</a></li>
-            <li><a href="{% url "about" %}">about</a></li>
-            <li><a href="{% url "products" %}">products</a></li>
-            <li><a href="{% url "reviews" %}">reviews</a></li>
-            <li><a href="{% url "contact" %}">contact</a></li>
+            <li><a href="{% url 'home' %}">home</a></li>
+            <li><a href="{% url 'about' %}">about</a></li>
+            <li><a href="{% url 'products' %}">products</a></li>
+            <li><a href="{% url 'reviews' %}">reviews</a></li>
+            <li><a href="{% url 'contact' %}">contact</a></li>
         </ul>
     </div>
     <div class="line"></div>
@@ -102,7 +106,7 @@
         velit perspiciatis voluptatem hic officia iste inventore officiis quo recusandae,
         nemo cum eos? Magni sed amet natus doloribus?
     </p>
-    <ul class="social flex">
+    <ul class="social flex justify-around">
         <li>
             <a href="#"><i class="fab fa-facebook-f"></i></a>
         </li>
@@ -119,7 +123,9 @@
     <p>&copy; Created by Nabil Alaa All rights Reserved</p>
 </footer>
 <div class="scroll"><i class="fas fa-chevron-up"></i></div>
-<script src="{% static "js/quantity.js" %}"></script>
+<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+<script src="//unpkg.com/alpinejs" defer></script>
+
 <script src="{% static "js/main.js" %}"></script>
 </body>
 </html>

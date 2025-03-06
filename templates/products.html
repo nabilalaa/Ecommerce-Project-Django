@@ -12,14 +12,20 @@ products
                     {% for product in products %}
                         <div class="product">
                             <div class="product-img">
-                                <img src="{{ product.image.url }}" alt="" />
+                                {% if product.image %}
+                                <img src="https://res.cloudinary.com/dnru0whph/image/upload/v1/{{product.image}}" alt="" />
+                                {% elif product.urlImage %}
+                                <img src="{{product.urlImage}}" alt="" />
+                                {%else%}
+                                <img src=" https://placehold.co/400" alt="" />
+                                {% endif %}
                             </div>
                             <div class="info">
                                 <h3>{{ product.name }}</h3>
                                 <p>
                                     {{ product.description }}
                                 </p>
-                                <a href="{% url "details" detail_id=product.id %}" class="btn">details</a>
+                                <a href="{% url 'addItem' product.id  %}" class="btn">Add</a>
                             </div>
                         </div>
                     {% endfor %}

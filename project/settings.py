@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     "ecommerce",
     'cloudinary_storage',
     'cloudinary',
+    "cart",
+    "accounts",
+    'tailwind',
+    'theme',
+    'django_browser_reload'
 
 ]
 
@@ -52,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
+      "django_browser_reload.middleware.BrowserReloadMiddleware",
+
 
 ]
 
@@ -157,3 +164,12 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = 'npm.cmd'
+# NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+# INTERNAL_IPS = [
+#     "127.0.0.1",
+# ]
+

@@ -1,33 +1,5 @@
 /* global style */
 
-* {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
-.container {
-    padding: 0 15px;
-    margin: 0 auto;
-    max-width: 1170px;
-}
-
-.flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-a {
-    text-decoration: none;
-}
-
-img {
-    width: 100%;
-    height: 100%;
-}
 
 body {
     user-select: none;
@@ -35,9 +7,6 @@ body {
     scroll-behavior: smooth;
 }
 
-ul {
-    list-style: none;
-}
 
 .pd-section {
     padding: 150px 0;
@@ -102,6 +71,7 @@ ul {
 #btn-accounts-side {
     cursor: pointer;
 }
+
 
 /* start nav */
 nav {
@@ -251,12 +221,6 @@ main p {
     line-height: 1.6;
     width: 30em;
     font-weight: 300;
-}
-
-.logo-main {
-    width: 10em;
-    height: 3em;
-    margin: -27px;
 }
 
 .btn-main {
