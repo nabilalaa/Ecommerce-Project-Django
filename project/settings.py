@@ -26,7 +26,7 @@ SECRET_KEY = 'rtd4c33bt*af70vb0w1k(^=zv^t4@9nl0xt166!==a9vn9bi=$'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "full-stack-ecommerce-django.onrender.com", "127.0.0.1"]
+    ".vercel.app", "127.0.0.1"]
 
 # Application definition
 
@@ -167,9 +167,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = 'npm.cmd'
-# NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
-# INTERNAL_IPS = [
-#     "127.0.0.1",
-# ]
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
