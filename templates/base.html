@@ -12,11 +12,13 @@
             rel="stylesheet"
     />
 
+
     <link rel="stylesheet" href="{% static 'css/all.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}"/>
-    {% tailwind_css %}
+        {% tailwind_css %}
+
 
 
     <title>{% block title %}   {% endblock title %}</title>
@@ -59,11 +61,11 @@
     </div>
     <div class="menu">
         <ul class="link-side-menu">
-            <li><a href="{% url "home" %}">home</a></li>
-            <li><a href="{% url "about" %}">about</a></li>
-            <li><a href="{% url "products" %}">products</a></li>
-            <li><a href="{% url "reviews" %}">reviews</a></li>
-            <li><a href="{% url "contact" %}">contact</a></li>
+            <li><a href="{% url 'home' %}">home</a></li>
+            <li><a href="{% url 'about' %}">about</a></li>
+            <li><a href="{% url 'products' %}">products</a></li>
+            <li><a href="{% url 'reviews' %}">reviews</a></li>
+            <li><a href="{% url 'contact' %}">contact</a></li>
             <li class="accounts">
                 <a id="btn-accounts-side">accounts</a>
                 <i class="fas fa-caret-down"></i>
@@ -126,6 +128,5 @@
 <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 <script src="//unpkg.com/alpinejs" defer></script>
 
-<script src="{% static "js/main.js" %}"></script>
 </body>
 </html>
