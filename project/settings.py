@@ -35,10 +35,10 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "cloudinary_storage",
     "django.contrib.staticfiles",
     "theme",
     "ecommerce",
+    "cloudinary_storage",
     "cloudinary",
     "cart",
     "accounts",
@@ -142,11 +142,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / "static"
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "assets",
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
