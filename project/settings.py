@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "cart",
     "accounts",
     "tailwind",
-    "django_browser_reload",
+    # "django_browser_reload",
 ]
 
 MIDDLEWARE = [
