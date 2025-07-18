@@ -102,7 +102,7 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "neondb",
         "USER": "neondb_owner",
         "PASSWORD": "npg_7DnpH4uolGks",
