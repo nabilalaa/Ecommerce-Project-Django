@@ -16,9 +16,9 @@ def register(request):
 
             if password == confirm_password and User.DoesNotExist:
                 User.objects.create_user(
-                    username=username, email=email, password=password)
-                messages.success(
-                    request, message="register has been sucessfully")
+                    username=username, email=email, password=password
+                )
+                messages.success(request, message="register has been sucessfully")
                 redirect("login")
 
             else:
@@ -27,7 +27,7 @@ def register(request):
     except:
         messages.error(request, message="username or email is exist ")
 
-    return render(request, "register.html")
+    return render(request, "auth_pages/register.html")
 
 
 def user_login(request):
@@ -37,16 +37,14 @@ def user_login(request):
     if request.user.is_authenticated:
         return redirect("/")
     if request.method == "POST":
-        if (authenticate(request, username=username, password=password)):
-            login(request, authenticate(
-                request, username=username, password=password))
-            messages.success(
-                request, message="login has been sucessfully")
+        if authenticate(request, username=username, password=password):
+            login(request, authenticate(request, username=username, password=password))
+            messages.success(request, message="login has been sucessfully")
             return redirect("/")
         else:
             messages.error(request, message="username or password is invaild")
 
-    return render(request, "login.html")
+    return render(request, "auth_pages/login.html")
 
 
 def user_logout(request):
@@ -63,7 +61,14 @@ def password_change(request):
     confirmPassword = request.POST.get("confirm-password")
     oldPassword = request.POST.get("old-password")
 
-    if request.POST and u.check_password(oldPassword) and password == confirmPassword and password and confirmPassword and oldPassword:
+    if (
+        request.POST
+        and u.check_password(oldPassword)
+        and password == confirmPassword
+        and password
+        and confirmPassword
+        and oldPassword
+    ):
         u.set_password(password)
         u.save()
         user_logout(request)
@@ -71,9 +76,9 @@ def password_change(request):
     else:
         print("sss")
         messages.error(request, message="somthing wrong")
-    return render(request, "password_change.html")
+    return render(request, "auth_pages/password_change.html")
 
 
 def profile(request):
 
-    return render(request, "profile.html")
+    return render(request, "auth_pages/profile.html")
