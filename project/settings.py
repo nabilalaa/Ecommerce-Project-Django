@@ -146,7 +146,7 @@ STATIC_ROOT = BASE_DIR / "static"
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / "assets",
+    BASE_DIR / "ecommerce/static",
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
