@@ -6,13 +6,16 @@ from django.contrib.auth.models import User
 class Category(models.Model):
 
     name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="category/", blank=True)
+    image_Url =  models.URLField(null=1,blank=True)
+
 
     def __str__(self):
         return self.name
 
     class Meta:
 
-        verbose_name = 'categories'
+        verbose_name = 'categorie'
 
 
 class Item(models.Model):

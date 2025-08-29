@@ -46,7 +46,6 @@ def contact(request):
 
 
 def addItem(request, item_id):
-    print(item_id)
     if request.user.is_authenticated:
         item = Item.objects.get(id=item_id)
 
