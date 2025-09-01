@@ -35,3 +35,17 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
+
+
+
+class Order(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.CharField(null=True)
+    city = models.CharField(null=True)
+    phone = models.IntegerField(null=True)
+    email = models.EmailField(null=True)
+    notes = models.TextField(null=True)
+    products = models.TextField(null=True)
+
+    def __str__(self):
+        return self.name
